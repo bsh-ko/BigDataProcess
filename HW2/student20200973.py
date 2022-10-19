@@ -5,6 +5,7 @@ import math
 wb = openpyxl.load_workbook("student.xlsx")
 ws = wb['Sheet1']
 
+total =[]
 len=0
 row_id = 1;
 for row in ws:
@@ -14,10 +15,10 @@ for row in ws:
 		sum_v += ws.cell(row = row_id, column = 5).value * 0.34
 		sum_v += ws.cell(row = row_id, column = 6).value
 		ws.cell(row = row_id, column = 7).value = sum_v
+		total.append([row_id, sum_v])
 		len += 1
 	row_id += 1
 
-total = []
 total.sort(key = lambda x:x[1], reverse=True)
 
 row_id = 1;

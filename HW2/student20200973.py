@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import openpyxl
 import math
 
@@ -16,6 +17,9 @@ for row in ws:
 		len += 1
 	row_id += 1
 
+total = []
+total.sort(key = lambda x:x[1], reverse=True)
+
 row_id = 1;
 for row in ws:
 	if row_id != 1: 
@@ -24,61 +28,29 @@ for row in ws:
 
 Bcnt = 0
 row_id = 1;
-while Bcnt < math.trunc(len*0.7):
-	max = 0
-	max_index = -1
-	
-	for i in range(2, len+2):
-		if ws.cell(row = i, column = 8).value == 'C0':
-			if max < ws.cell(row = i, column = 7).value:
-				max = ws.cell(row = i, column = 7).value
-				max_index = i
-	ws.cell(row = max_index, column = 8).value ='B0'
+while Bcnt < int(len*0.7):
+	ws.cell(row = total[Bcnt][0], column = 8).value ='B0'
 	Bcnt += 1
 	row_id += 1
 
 Acnt = 0
 row_id = 1;
-while Acnt < math.trunc(len*0.3):
-	max = 0
-	max_index = -1
-	
-	for i in range(2, len+2):
-		if ws.cell(row = i, column = 8).value == 'B0':
-			if max < ws.cell(row = i, column = 7).value:
-				max = ws.cell(row = i, column = 7).value
-				max_index = i
-	ws.cell(row = max_index, column = 8).value ='A0'
+while Acnt < int(len*0.3):
+	ws.cell(row = total[Acnt][0], column = 8).value ='A0'
 	Acnt += 1
 	row_id += 1
 
 a = 0
 row_id = 1;
-while a < math.trunc(Acnt*0.5):
-	max = 0
-	max_index = -1
-
-	for i in range(2, len+2):
-		if ws.cell(row = i, column = 8).value == 'A0':	
-			if max < ws.cell(row = i, column = 7).value:
-				max = ws.cell(row = i, column = 7).value
-				max_index = i
-	ws.cell(row = max_index, column = 8).value ='A+'
+while a < int(Acnt*0.5):
+	ws.cell(row = total[a][0], column = 8).value ='A+'
 	a += 1
 	row_id += 1
 
 b = 0
 row_id = 1;
-while b < math.trunc(Bcnt*0.5):
-	max = 0
-	max_index = -1
-
-	for i in range(2, len+2):
-		if ws.cell(row = i, column = 8).value == 'B0':	
-			if max < ws.cell(row = i, column = 7).value:
-				max = ws.cell(row = i, column = 7).value
-				max_index = i
-	ws.cell(row = max_index, column = 8).value ='B+'
+while b < int(Bcnt*0.5):
+	ws.cell(row = total[b][0], column = 8).value ='B+'
 	b += 1
 	row_id += 1
 
@@ -86,15 +58,8 @@ Ccnt = len - Bcnt
 c = 0
 row_id = 1;
 while c< math.trunc(Ccnt*0.5):
-	max = 0
-	max_index = -1
-
-	for i in range(2, len+2):
-		if ws.cell(row = i, column = 8).value == 'C0':	
-			if max < ws.cell(row = i, column = 7).value:
-				max = ws.cell(row = i, column = 7).value
-				max_index = i
-	ws.cell(row = max_index, column = 8).value ='C+'
+	ws.cell(row = total[c][0], column = 8).value ='C+'
 	c += 1
 	row_id += 1
+
 wb.save("student.xlsx")

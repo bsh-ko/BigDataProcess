@@ -12,7 +12,7 @@ with open(inputFile, "rt") as f:
 		genre = movie[2].split("|")
 
 		for g in genre:
-			if g not in G:
+			if g not in AllG:
 				AllG[g] = 1
 			else:
 				AllG[g] += 1

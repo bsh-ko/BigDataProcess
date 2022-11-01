@@ -6,15 +6,17 @@ from datetime import datetime, date
 inputFile = sys.argv[1]
 outputFile = sys.argv[2]
 
-Weekday = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+def Weekday(date):
+	wday = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+	day = date.weekday()
+	return wday[day]
 
 trip = {}
 with open(inputFile, "rt") as f:
 	for r in f:
-		row = r.replace("\n", "")
 		uber = r.split(',')
 		uberDate = uber[1].split("/")
-		today = Weekday[uberDate.weekday()]
+		today = Weekday(date(int(uberDate[2]), int(uberDate[0], int(uberDate[1])))
 
 		if t not in trip:
 			trip[t] = [int(uber[2]), int(uber[3])]
@@ -23,5 +25,5 @@ with open(inputFile, "rt") as f:
 			trip[t][1] += int(today[3])
 
 with open(outputFile, "wt") as f:
-	for key, value in trip.items():
-		f.write(key +" "+str(value[0]) +str(value[1]) + "\n")
+	for k, v in trip.items():
+		f.write(k +" "+str(v[0]) +str(v[1]) + "\n")

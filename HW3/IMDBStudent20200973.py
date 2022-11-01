@@ -5,7 +5,7 @@ import sys
 inputFile = sys.argv[1]
 outputFile = sys.argv[2]
 
-G = {}
+AllG = {}
 with open(inputFile, "rt") as f:
 	for r in f:
 		movie = r.split("::")
@@ -13,10 +13,10 @@ with open(inputFile, "rt") as f:
 
 		for g in genre:
 			if g not in G:
-				G[g] = 1
+				AllG[g] = 1
 			else:
-				G[g] += 1
+				AllG[g] += 1
 
 with open(outputFile, "wt") as f:
-	for r in G:
-		f.write("{} {}\n".format(g, G[g]))
+	for k, v in AllG.items():
+		f.write(k + " " + str(v) + "\n") 

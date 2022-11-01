@@ -12,10 +12,10 @@ with open(inputFile, "rt") as f:
 		genre = movie[2].split("|")
 
 		for g in genre:
-			if g in G:
-				G[g] += 1
-			else:
+			if g not in G:
 				G[g] = 1
+			else:
+				G[g] += 1
 
 with open(outputFile, "wt") as f:
 	for r in G:

@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import sys
 from datetime import datetime, date
 
@@ -17,17 +16,17 @@ with open(inputFile, "rt") as f:
 		uberDay = uber[1].split("/")
 		uber[1] = days[date(int(uberDay[2]), int(uberDay[0]), int(uberDay[1])).weekday()]
 
-		str = uber[0] + "," + uber[1]
-		if key not in d1:
-			d1[key] = int(uber[2])	
-			d2[key] = int(uber[3])	
+		s = uber[0] + "," + uber[1]
+		if s not in d1:
+			d1[s] = int(uber[2])	
+			d2[s] = int(uber[3])	
 
 		else:
-			d1[key] += int(uber[2])	
-			d2[key] += int(uber[3])	
+			d1[s] += int(uber[2])	
+			d2[s] += int(uber[3])	
 
 string = d1.keys()
 
 with open(outputFile, "wt") as f:
 	for k in string:
-		f.write(k +" "+str(u_dic1[key]) + "," + str(u_dic2[key]) + "\n")
+		f.write(k +" "+str(d1[k]) + "," + str(d2[k]) + "\n")

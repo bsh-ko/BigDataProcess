@@ -7,11 +7,11 @@ inputFile = sys.argv[1]
 outputFile = sys.argv[2]
 
 def Weekday(date):
-	wday = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+	days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 	day = date.weekday()
-	return (wday[day])
+	return (days[day])
 
-dict_uber = {}
+dict_uber = dict()
 with open(inputFile, "rt") as f:
 	for r in f:
 		uber = r.split(",")

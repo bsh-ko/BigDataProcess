@@ -7,16 +7,18 @@ outputFile = sys.argv[2]
 
 AllG = {}
 with open(inputFile, "rt") as f:
+	genre = []
 	for r in f:
+		r = r.replace("\n", "")
 		movie = r.split("::")
 		genre = movie[2].split("|")
 
 		for g in genre:
-			if g not in AllG:
-				AllG[g] = 1
-			else:
+			if g in AllG:
 				AllG[g] += 1
+			else:
+				AllG[g] = 1
 
 with open(outputFile, "wt") as f:
-	for k, v in AllG.items():
-		f.write(k + " " + str(v) + "\n") 
+	for g in AllG:
+		f.write("{} {}\n".format(g, AllG[g])) 

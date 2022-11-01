@@ -6,24 +6,28 @@ from datetime import datetime, date
 inputFile = sys.argv[1]
 outputFile = sys.argv[2]
 
-def Weekday(date):
-	days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
-	day = date.weekday()
-	return (days[day])
+days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+u_dic1 = dict()
+u_dic2 = dict()
 
-dict_uber = dict()
 with open(inputFile, "rt") as f:
-	for r in f:
-		uber = r.split(",")
+	for row in f:
+		uber = row.split(",")
+		uber[-1] = uber[-1].split("\n")[0]
 		uberDate = uber[1].split("/")
-		today = Weekday(date(int(uberDate[2]), int(uberDate[0]), int(uberDate[1])))
+		uber[1] = days[date(int(day[2]), int(day[0]), int(day[1])).weekday()]
 
-		if u not in dict_uber:
-			dict_uber[u] = [int(uber[2]), int(uber[3])]	
+		str = uber[0] + "," + uber[1]
+		if key not in u_dic1:
+			u_dic1[key] = int(uber[2])	
+			u_dic2[key] = int(uber[3])	
+
 		else:
-			dict_uber[u][0] += int(u[2])
-			dict_uber[u][1] += int(u[3])
+			u_dic1[key] += int(uber[2])	
+			u_dic2[key] += int(uber[3])	
+
+string = u_dic1.keys()
 
 with open(outputFile, "wt") as f:
-	for k, v in dict_uber.items():
-		f.write(k +" "+str(v[0]) +str(v[1]) + "\n")
+	for k in string:
+		f.write(k +" "+str(u_dic1[key]) + "," + str(u_dic2[key]) + "\n")

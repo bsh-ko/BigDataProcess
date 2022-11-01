@@ -19,4 +19,4 @@ with open(inputFile, "rt") as f:
 
 with open(outputFile, "wt") as f:
 	for r in G:
-		f.write("%s %d" % (g, G[g]))
+		f.write("{} {}\n".format(g, G[g]))

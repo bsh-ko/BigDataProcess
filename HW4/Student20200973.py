@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
+from os import listdir
 import sys
 import numpy as np
 import operator
-import os
 
 test = sys.argv[2]
 training = sys.argv[1]
@@ -62,7 +62,7 @@ for i in range(1, 21):
 
 		if answer != expect:
 			fail += 1
-		cnt += 1
-	result = int((fail / cnt) * 100)
+		sum += 1
+	result = int((fail / sum) * 100)
 
 	print(result)

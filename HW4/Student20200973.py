@@ -36,11 +36,11 @@ def classify0(inX, dataSet, labels, k):
 	return sortedClassCount[0][0]
 
 def createDataSet(dataset):
-	len = len(trainingD)
-	group = np.zeros((len, 1024))
+	l = len(trainingD)
+	group = np.zeros((l, 1024))
 	labels = []
 
-	for i in range(len):
+	for i in range(l):
 		fName = trainingD[i]
 		label = int(fName.split('_')[0])
 		labels.append(label)
@@ -51,16 +51,16 @@ def createDataSet(dataset):
 group, labels = createDataSet(training)
 
 
-for i in range(1, 21):
+for k in range(1, 21):
 	sum=0
 	fail=0
 
-	for j in range(len(testD)):
+	for i in range(len(testD)):
 		tData = readFile(test+ '/' +testD[i])
-		answer = int(testD[i].split('_')[0])
+		a = int(testD[i].split('_')[0])
 		expect = classify0(tData, group, labels, k)
 
-		if answer != expect:
+		if a != expect:
 			fail += 1
 		sum += 1
 	result = int((fail / sum) * 100)
